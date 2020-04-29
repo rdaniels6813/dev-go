@@ -16,3 +16,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: Dockerfile
           registry: docker.pkg.github.com
+      - name: Publish to Dockerhub
+        uses: elgohr/Publish-Docker-Github-Action@2.14
+        with:
+          name: rdaniels6813/dev-go
+          username: rdaniels6813
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          dockerfile: Dockerfile
+          tag_semver: true
