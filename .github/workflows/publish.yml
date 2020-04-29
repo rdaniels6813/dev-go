@@ -11,7 +11,7 @@ jobs:
       - name: Publish to Github Registry
         uses: elgohr/Publish-Docker-Github-Action@2.14
         with:
-          name: docker.pkg.github.com/rdaniels6813/dev-go
+          name: docker.pkg.github.com/rdaniels6813/dev-go/go
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: Dockerfile
