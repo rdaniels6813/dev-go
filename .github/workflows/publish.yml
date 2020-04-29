@@ -7,9 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@2.14
+      - uses: actions/checkout@v2
       - name: Publish to Github Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@2.14
         with:
           name: docker.pkg.github.com/rdaniels6813/dev-go
           username: ${{ github.actor }}
