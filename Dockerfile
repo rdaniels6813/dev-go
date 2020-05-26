@@ -55,5 +55,9 @@ RUN cd /tmp \
 ARG JQ_VERSION=1.6
 RUN curl -sSL https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -o /usr/local/bin/jq \
   && chmod +x /usr/local/bin/jq
+
+# Install alias for being able to load env vars from .env file for running an app.  Usage: envrun ./bin/<your-app-name>
+RUN echo "alias envrun='eval \$(egrep -v '^#' .env | xargs)'" >> ~/.bashrc
+
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
