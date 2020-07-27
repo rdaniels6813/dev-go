@@ -1,4 +1,7 @@
-FROM golang:1.14.3
+ARG GO_VERSION=1.14.6
+ARG JQ_VERSION=1.6
+ARG TASKFILE_VERSION=2.8.1
+FROM golang:GO_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -43,7 +46,6 @@ RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 RUN echo "complete -C aws_completer awslocal" >> ~/.bashrc
 
 # Install task.dev
-ARG TASKFILE_VERSION=2.8.0
 RUN cd /tmp \
   && curl -sSL "https://github.com/go-task/task/releases/download/v${TASKFILE_VERSION}/task_linux_amd64.tar.gz" -o task_linux_amd64.tar.gz \
   && tar xvzf task_linux_amd64.tar.gz \
@@ -52,7 +54,6 @@ RUN cd /tmp \
   && curl -sSL "https://raw.githubusercontent.com/go-task/task/v${TASKFILE_VERSION}/completion/bash/task.bash" -o /etc/bash_completion.d/task.bash
 
 # Install jq
-ARG JQ_VERSION=1.6
 RUN curl -sSL https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -o /usr/local/bin/jq \
   && chmod +x /usr/local/bin/jq
 

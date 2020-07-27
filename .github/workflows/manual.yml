@@ -1,0 +1,35 @@
+name: Manually Publish Docker
+on:
+  workflow_dispatch:
+    inputs:
+      go_version:
+        description: The version of go to publish an image for
+        required: false
+        default: '1.14.6'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Publish to Github Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.14
+        env:
+          GO_VERSION: ${{ github.event.inputs.go_version }}
+        with:
+          name: docker.pkg.github.com/rdaniels6813/dev-go/go
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          registry: docker.pkg.github.com
+          buildargs: GO_VERSION
+      - name: Publish to Dockerhub
+        uses: elgohr/Publish-Docker-Github-Action@2.14
+        env:
+          GO_VERSION: ${{ github.event.inputs.go_version }}
+        with:
+          name: rdaniels6813/dev-go
+          username: rdaniels6813
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          dockerfile: Dockerfile
+          tag_semver: true
+          buildargs: GO_VERSION
