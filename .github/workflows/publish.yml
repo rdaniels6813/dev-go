@@ -16,6 +16,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: Dockerfile
           registry: docker.pkg.github.com
+          tags: "latest,1.14.6"
       - name: Publish to Dockerhub
         uses: elgohr/Publish-Docker-Github-Action@2.14
         with:
@@ -24,3 +25,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           dockerfile: Dockerfile
           tag_semver: true
+          tags: "latest,1.14.6"
