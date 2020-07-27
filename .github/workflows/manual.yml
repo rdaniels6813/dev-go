@@ -22,7 +22,7 @@ jobs:
           dockerfile: Dockerfile
           registry: docker.pkg.github.com
           buildargs: GO_VERSION
-          tags: ${{ github.event.inputs.go_version }}
+          tag_names: ${{ github.event.inputs.go_version }}
       - name: Publish to Dockerhub
         uses: elgohr/Publish-Docker-Github-Action@2.14
         env:
@@ -34,4 +34,4 @@ jobs:
           dockerfile: Dockerfile
           tag_semver: true
           buildargs: GO_VERSION
-          tags: ${{ github.event.inputs.go_version }}
+          tag_names: ${{ github.event.inputs.go_version }}
