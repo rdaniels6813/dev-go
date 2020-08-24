@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Publish to Github Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.14
+        uses: elgohr/Publish-Docker-Github-Action@2.19
         env:
           GO_VERSION: ${{ github.event.inputs.go_version }}
         with:
@@ -22,9 +22,9 @@ jobs:
           dockerfile: Dockerfile
           registry: docker.pkg.github.com
           buildargs: GO_VERSION
-          tag_names: ${{ github.event.inputs.go_version }}
+          tags: ${{ github.event.inputs.go_version }}
       - name: Publish to Dockerhub
-        uses: elgohr/Publish-Docker-Github-Action@2.14
+        uses: elgohr/Publish-Docker-Github-Action@2.19
         env:
           GO_VERSION: ${{ github.event.inputs.go_version }}
         with:
@@ -34,4 +34,4 @@ jobs:
           dockerfile: Dockerfile
           tag_semver: true
           buildargs: GO_VERSION
-          tag_names: ${{ github.event.inputs.go_version }}
+          tags: ${{ github.event.inputs.go_version }}
