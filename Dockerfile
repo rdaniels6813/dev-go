@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
-  && apt-get -y install git openssh-client less iproute2 procps lsb-release unzip zip clang-format bash-completion groff python3-distutils \
+  && apt-get -y install git openssh-client less iproute2 procps lsb-release unzip zip clang-format bash-completion groff python3-distutils gnupg2 \
   && mkdir -p /tmp/gotools \
   && cd /tmp/gotools \
   && GO111MODULE=on go get -v golang.org/x/tools/gopls@latest 2>&1 \
